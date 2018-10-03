@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+    redis: 
+        build: 
+            context: ./redis
+            dockerfile: ./Dockerfile
+        dns: 
+            - 127.0.0.1
+        network_mode: "bridge"
+        ports:
+            - '6379:6379'
+        volumes: 
+            - ./redis/data_persist:/data
+    server: 
+        build: 
+            context: ./server
+            dockerfile: ./Dockerfile
+        command: nodemon --inspect=0.0.0.0:9229 src/app.js
+        dns: 
+            - 127.0.0.1
+        links:
+            - 'redis:redis'
+        network_mode: "bridge"
+        ports:
+            - '3000:3000'
+            - '9229:9229'
+        volumes: 
+            - ./server/src:/server/src
