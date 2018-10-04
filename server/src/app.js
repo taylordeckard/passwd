@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const router = require('koa-router')();
 const koaBody = require('koa-body')();
+const serve = require('koa-static');
 const logger = require('./logger');
 const koaLogger = require('koa-bunyan')(logger);
 const {
@@ -26,5 +27,7 @@ router.post('/login', login)
 
 app.use(router.routes());
 
+// serve static files
+app.use(serve(`${__dirname}/public`));
 
 app.listen(3000);

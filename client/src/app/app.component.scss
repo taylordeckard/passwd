@@ -1,0 +1,28 @@
+@import '../variables.scss';
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: $primary-color;
+	height: 70px;
+	box-shadow: $base-box-shadow;
+	text-align: center;
+	h1 {
+		margin-top: 14px;
+	}
+}
+
+.container {
+	position: relative;
+	background: white;
+	height: 80vh; 
+	margin-top: 100px;
+	box-shadow: $base-box-shadow;
+	width: initial;
+	.login {
+		height: 200px;
+		width: 350px;
+	}
+}

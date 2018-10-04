@@ -1,0 +1,22 @@
+@import './variables.scss';
+@import './grid.scss';
+
+body {
+	background-image: linear-gradient(to bottom left, $light-color, white);
+	font-family: "Verdana";
+	margin: 0;
+	height: calc(100vh - 100px);
+}
+
+.text-center { 
+	text-align: center;
+}
+
+.absolute-center {
+  @include absolute-center;
+
+  &--top      { top: 30% !important; }
+  &--right    { left: 70% !important; }
+  &--bottom   { top: 70% !important; }
+  &--left     { left: 30% !important; }
+}
