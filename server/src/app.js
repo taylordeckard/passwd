@@ -21,9 +21,9 @@ app.use(koaLogger);
 app.keys = constants.appKeys;
 
 // route definitions
-router.post('/login', login)
-	.post('/user', createUser)
-	.get('/user', setUser, getUser);
+router.post('/api/login', login)
+	.post('/api/user', createUser)
+	.get('/api/user', setUser, getUser);
 
 app.use(router.routes());
 

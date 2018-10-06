@@ -1,0 +1,10 @@
+<div class="container" [@fade]="'in'">
+  <div class="login absolute-center text-center">
+    <h3>Login</h3>
+    <form [formGroup]="loginForm">
+      <pw-text-input label="Username" autofocus="true" formControlName="username"></pw-text-input>
+      <pw-text-input label="Password" type="password" formControlName="password"></pw-text-input>
+      <pw-button *ngIf="loginForm.valid" (click)="onSubmit()">Submit</pw-button>
+    </form>
+  </div>
+</div>

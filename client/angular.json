@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "pw",
       "schematics": {
         "@schematics/angular:class": {
           "spec": false
@@ -74,7 +74,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "passwd:build"
+            "browserTarget": "passwd:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

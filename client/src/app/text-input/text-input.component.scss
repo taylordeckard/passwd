@@ -11,7 +11,7 @@
 		pointer-events: none;
 	}
 	input {
-		width: 100%;
+		width: calc(100% - 20px);
 		padding: 10px;
 		border-radius: 3px;
 		border: 1px solid gray;

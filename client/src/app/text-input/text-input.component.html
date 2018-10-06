@@ -1,4 +1,8 @@
 <div class="form-group">
-	<input #input [type]="type" [(ngModel)]="model" [ngClass]="{ 'has-input': model }">
+	<input #input
+      [type]="type"
+      [(ngModel)]="model"
+      (ngModelChange)="propagateChange(model)"
+      [ngClass]="{ 'has-input': model }">
 	<label>{{ label }}</label>
 </div>
