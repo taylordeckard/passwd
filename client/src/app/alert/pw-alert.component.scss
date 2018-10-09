@@ -1,0 +1,20 @@
+@import '../../variables.scss';
+
+:host {
+  .alert {
+    &.danger {
+      background: $danger-color;
+    }
+    &.success {
+      background: $success-color;
+    }
+    display: flex;
+    align-items: center;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    pw-icon {
+      margin-left: auto;
+    }
+  }
+}

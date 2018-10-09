@@ -1,5 +1,17 @@
 <div class="header">
 	<h1>passwd</h1>
 </div>
-<pw-login></pw-login>
+<pw-login *ngIf="!isLoggedIn; else content"></pw-login>
+<ng-template #content>
+  <div class="content container text-center">
+	  <div class="absolute-center">
+		  <div>You don't have any passwords stored yet. Click the plus icon to add them.</div>
+		  <div class="base-margin-top">
+			  <pw-icon class="base-margin-top"
+				  src="assets/baseline-add-24px.svg"
+				  color="dark" size="lg"></pw-icon>
+		  </div>
+	  </div>
+  </div>
+</ng-template>
 

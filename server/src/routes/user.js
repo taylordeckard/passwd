@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const redis = require('../db');
 const utils = require('../utils');
 
@@ -19,5 +20,13 @@ module.exports = {
 	},
 	getUser (ctx) {
 		ctx.body = ctx.state.user;
+	},
+	async updateUser (ctx) {
+		const username = ctx.state.user.username;
+		const redisKey = utils.getRediUserKey(username);
+		const dbUser = await redis.get(redisKey);
+		// update user data
+		_.set(dbUser, 'data', _.get(ctx.request.body, 'data'));
+		await redis.set(redisKey, dbUser);
 	},
 };

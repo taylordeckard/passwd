@@ -1,9 +1,12 @@
 import { Component, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../api.service';
-import { fade } from '../animations';
 import { of, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
+import { ApiService } from 'app/api.service';
+import { AlertColor } from 'app/enums';
+import { AlertProps } from 'app/interfaces';
+import { fade } from 'app/animations';
 
 @Component({
   selector: 'pw-login',
@@ -12,6 +15,7 @@ import { catchError } from 'rxjs/operators';
   animations: [...fade],
 })
 export class PwLoginComponent implements OnDestroy {
+  alert: AlertProps = { show: false, msg: '', color: AlertColor.DANGER };
   loginPostSub: Subscription;
   constructor (
     private api: ApiService,
@@ -24,16 +28,21 @@ export class PwLoginComponent implements OnDestroy {
   onSubmit () {
     this.loginPostSub = this.api.login(this.loginForm.value)
       .pipe(catchError((err: any) => {
-        console.log(err);
+        this.showAlert('That didn\'t work.', AlertColor.DANGER);
         return of();
       }))
       .subscribe(response => {
-        console.log(response);
+        this.showAlert('Logged In!', AlertColor.SUCCESS);
       });
   }
   ngOnDestroy () {
     if (this.loginPostSub) {
       this.loginPostSub.unsubscribe();
     }
+  }
+  showAlert (msg: string, color: AlertColor) {
+    this.alert.msg = msg;
+    this.alert.show = true;
+    this.alert.color = color;
   }
 }

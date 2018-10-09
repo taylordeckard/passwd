@@ -1,5 +1,6 @@
 <div class="container" [@fade]="'in'">
   <div class="login absolute-center text-center">
+    <pw-alert [(show)]="alert.show" [msg]="alert.msg" [color]="alert.color"></pw-alert>
     <h3>Login</h3>
     <form [formGroup]="loginForm">
       <pw-text-input label="Username" autofocus="true" formControlName="username"></pw-text-input>

@@ -10,7 +10,12 @@
     width: initial;
     .login {
       height: 200px;
-      width: 350px;
+      @media screen and (max-width: 375px) {
+        width: calc(100vw - 48px);
+      }
+      @media screen and (min-width: 375px) {
+        width: 350px;
+      }
     }
   }
 }

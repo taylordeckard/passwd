@@ -1,11 +1,13 @@
 @import './variables.scss';
 @import './grid.scss';
+@import './margins.scss';
 
 body {
 	background-image: linear-gradient(to bottom left, $light-color, white);
 	font-family: "Verdana";
 	margin: 0;
 	height: calc(100vh - 100px);
+	margin-top: 100px;
 }
 
 .text-center { 

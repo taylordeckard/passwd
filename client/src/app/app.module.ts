@@ -4,18 +4,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+
 import { ApiService } from './api.service';
+import { IconService } from './icon.service';
+
+import { AppComponent } from './app.component';
+import { PwAlertComponent } from './alert/pw-alert.component';
 import { PwButtonComponent } from './button/pw-button.component';
-import { TextInputComponent } from './text-input/text-input.component';
+import { PwIconComponent } from './icon/pw-icon.component';
 import { PwLoginComponent } from './login/pw-login.component';
+import { TextInputComponent } from './text-input/text-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PwAlertComponent,
     PwButtonComponent,
+    PwIconComponent,
     PwLoginComponent,
     TextInputComponent,
   ],
@@ -27,7 +34,7 @@ import { PwLoginComponent } from './login/pw-login.component';
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [ApiService],
+  providers: [ApiService, IconService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

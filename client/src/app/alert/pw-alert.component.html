@@ -1,0 +1,8 @@
+<div class="alert" *ngIf="show"
+  [ngClass]="{ 
+    'danger': color === 'danger',
+    'success': color === 'success'
+  }">
+  <span class="msg" [innerHTML]="msg"></span>
+  <pw-icon src="/assets/baseline-close-24px.svg" (click)="hide()"></pw-icon>
+</div>

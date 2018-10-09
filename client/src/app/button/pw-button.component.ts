@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { fade } from '../animations';
+import { fade } from 'app/animations';
 
 @Component({
   selector: 'pw-button',

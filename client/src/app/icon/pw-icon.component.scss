@@ -1,0 +1,31 @@
+@import '../../variables.scss';
+
+:host {
+  cursor: pointer;
+  .white {
+    ::ng-deep svg path:first-child {
+      fill: white;
+    }
+    &:hover {
+      ::ng-deep svg path:first-child {
+        fill: $light-color;
+      }
+    }
+  }
+  .dark {
+    ::ng-deep svg path:first-child {
+      fill: darken($dark-color, 5%);
+    }
+    &:hover {
+      ::ng-deep svg path:first-child {
+        fill: $dark-color;
+      }
+    }
+  }
+  .lg {
+    ::ng-deep svg {
+      height: 75px;
+      width: 75px;
+    }
+  }
+}

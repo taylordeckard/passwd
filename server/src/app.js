@@ -9,6 +9,7 @@ const {
 	user: {
 		createUser,
 		getUser,
+		updateUser,
 	},
 } = require('./routes');
 const constants = require('./constants');
@@ -22,8 +23,9 @@ app.keys = constants.appKeys;
 
 // route definitions
 router.post('/api/login', login)
+	.get('/api/user', setUser, getUser)
 	.post('/api/user', createUser)
-	.get('/api/user', setUser, getUser);
+	.put('/api/user', updateUser);
 
 app.use(router.routes());
 
