@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-import { User } from 'app/interfaces';
+import { Credentials, User } from 'app/interfaces';
 
-import { ApiService } from './api.service';
+import { ApiService } from 'app/services';
 
 @Component({
   selector: 'pw-root',
@@ -30,6 +31,15 @@ export class AppComponent implements OnDestroy, OnInit {
           });
       }
       this.isLoggedIn = change;
+    });
+  }
+  onPasswordsChange (passwords: Credentials[]) {
+    this.api.updateUser(this.user)
+    .pipe(catchError(err => {
+      return of();
+    }))
+    .subscribe(result => {
+      console.log(result);
     });
   }
 }

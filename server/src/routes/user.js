@@ -18,15 +18,18 @@ module.exports = {
 
 		ctx.body = username;
 	},
-	getUser (ctx) {
-		ctx.body = ctx.state.user;
+	async getUser (ctx) {
+		const username = ctx.state.user.username;
+		const redisKey = utils.getRedisUserKey(username);
+		ctx.body = _.pick(await redis.client.get(redisKey), 'data');
 	},
 	async updateUser (ctx) {
 		const username = ctx.state.user.username;
-		const redisKey = utils.getRediUserKey(username);
-		const dbUser = await redis.get(redisKey);
+		const redisKey = utils.getRedisUserKey(username);
+		const dbUser = await redis.client.get(redisKey);
 		// update user data
 		_.set(dbUser, 'data', _.get(ctx.request.body, 'data'));
-		await redis.set(redisKey, dbUser);
+		await redis.client.set(redisKey, dbUser);
+		ctx.body = 'success';
 	},
 };

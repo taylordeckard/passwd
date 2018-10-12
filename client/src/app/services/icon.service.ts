@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { constants } from './shared';
-import { LoginPost } from './interfaces';
+import { constants } from 'app/shared';
+import { LoginPost } from 'app/interfaces';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 

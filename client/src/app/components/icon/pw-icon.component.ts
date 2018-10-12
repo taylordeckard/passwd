@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { IconService } from 'app/icon.service';
+import { IconService } from 'app/services';
 
 @Component({
   selector: 'pw-icon',

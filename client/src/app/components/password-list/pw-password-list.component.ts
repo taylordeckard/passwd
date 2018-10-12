@@ -1,6 +1,8 @@
-import { Component, ElementRef, Input, OnDestroy, Renderer2 } from '@angular/core';
+import {
+  Component, ElementRef, EventEmitter, Input, OnDestroy, Output, Renderer2,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from 'app/api.service';
+import { ApiService } from 'app/services';
 import { fade } from 'app/animations';
 import { Credentials } from 'app/interfaces';
 
@@ -12,6 +14,7 @@ import { Credentials } from 'app/interfaces';
 })
 export class PwPasswordListComponent implements OnDestroy {
   @Input() passwords: Credentials[];
+  @Output() passwordsChange: EventEmitter<Credentials[]> = new EventEmitter<Credentials[]>();
   creating = false;
   pwForm: FormGroup;
   constructor (private fb: FormBuilder) {
@@ -33,6 +36,7 @@ export class PwPasswordListComponent implements OnDestroy {
   addPassword () {
     if (this.pwForm.valid) {
       this.passwords = [...(this.passwords || []), this.pwForm.value];
+      this.passwordsChange.emit(this.passwords);
     }
     this.creating = false;
   }

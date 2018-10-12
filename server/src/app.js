@@ -25,7 +25,7 @@ app.keys = constants.appKeys;
 router.post('/api/login', login)
 	.get('/api/user', setUser, getUser)
 	.post('/api/user', createUser)
-	.put('/api/user', updateUser);
+	.put('/api/user', setUser, updateUser);
 
 app.use(router.routes());
 

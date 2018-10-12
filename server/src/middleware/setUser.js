@@ -14,5 +14,5 @@ module.exports = async (ctx, next) => {
 
 	ctx.state.user = new User(_.omit(userRecord, 'password'));
 	redis.client.expire(utils.getRedisCookieKey(passwdCookie), constants.cookieExpiry);
-	next();
+	await next();
 };

@@ -7,17 +7,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-import { ApiService } from './api.service';
-import { IconService } from './icon.service';
+import { ApiService, IconService } from 'app/services';
 
 import { AppComponent } from './app.component';
-import { PwAlertComponent } from './alert/pw-alert.component';
-import { PwButtonComponent } from './button/pw-button.component';
-import { PwCredentialComponent } from './credential/pw-credential.component';
-import { PwIconComponent } from './icon/pw-icon.component';
-import { PwLoginComponent } from './login/pw-login.component';
-import { PwPasswordListComponent } from './password-list/pw-password-list.component';
-import { TextInputComponent } from './text-input/text-input.component';
+import { PwAlertComponent } from 'app/components';
+import { PwButtonComponent } from 'app/components';
+import { PwCredentialComponent } from 'app/components';
+import { PwIconComponent } from 'app/components';
+import { PwLoginComponent } from 'app/components';
+import { PwPasswordListComponent } from 'app/components';
+import { TextInputComponent } from 'app/components';
 
 @NgModule({
   declarations: [

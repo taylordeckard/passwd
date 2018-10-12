@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { of, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { ApiService } from 'app/api.service';
+import { ApiService } from 'app/services';
 import { AlertColor } from 'app/enums';
 import { AlertProps } from 'app/interfaces';
 import { fade } from 'app/animations';
