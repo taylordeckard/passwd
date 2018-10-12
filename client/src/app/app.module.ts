@@ -13,8 +13,10 @@ import { IconService } from './icon.service';
 import { AppComponent } from './app.component';
 import { PwAlertComponent } from './alert/pw-alert.component';
 import { PwButtonComponent } from './button/pw-button.component';
+import { PwCredentialComponent } from './credential/pw-credential.component';
 import { PwIconComponent } from './icon/pw-icon.component';
 import { PwLoginComponent } from './login/pw-login.component';
+import { PwPasswordListComponent } from './password-list/pw-password-list.component';
 import { TextInputComponent } from './text-input/text-input.component';
 
 @NgModule({
@@ -22,8 +24,10 @@ import { TextInputComponent } from './text-input/text-input.component';
     AppComponent,
     PwAlertComponent,
     PwButtonComponent,
+    PwCredentialComponent,
     PwIconComponent,
     PwLoginComponent,
+    PwPasswordListComponent,
     TextInputComponent,
   ],
   imports: [
