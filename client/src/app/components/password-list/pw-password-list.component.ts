@@ -15,32 +15,58 @@ import { Credentials } from 'app/interfaces';
 export class PwPasswordListComponent implements OnDestroy {
   @Input() passwords: Credentials[];
   @Output() passwordsChange: EventEmitter<Credentials[]> = new EventEmitter<Credentials[]>();
-  creating = false;
+  editingCred: Credentials;
+  editingCredIdx: number;
   pwForm: FormGroup;
+  showForm = false;
   constructor (private fb: FormBuilder) {
     this.resetForm();
   }
   enterCreateView () {
-    this.creating = true;
+    this.showForm = true;
     this.resetForm();
   }
-  resetForm () {
+  resetForm (cred?: Credentials) {
     this.pwForm = this.fb.group({
-      title: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      title: [(cred && cred.title) || '', Validators.required],
+      username: [(cred && cred.username) || '', Validators.required],
+      password: [(cred && cred.password) || '', Validators.required],
     });
   }
   ngOnDestroy () {
   }
   addPassword () {
     if (this.pwForm.valid) {
-      this.passwords = [...(this.passwords || []), this.pwForm.value];
+      if (this.editingCred) {
+        this.editingCred.title = this.pwForm.value.title;
+        this.editingCred.username = this.pwForm.value.username;
+        this.editingCred.password = this.pwForm.value.password;
+      } else {
+        this.passwords = [...(this.passwords || []), this.pwForm.value];
+      }
       this.passwordsChange.emit(this.passwords);
     }
-    this.creating = false;
+    this.resetEditingCred();
+    this.showForm = false;
   }
   cancelAdd () {
-    this.creating = false;
+    this.resetEditingCred();
+    this.showForm = false;
+  }
+  onCredEdit (cred: Credentials, index: number) {
+    this.showForm = true;
+    this.resetForm(cred);
+    this.editingCred = cred;
+    this.editingCredIdx = index;
+  }
+  onCredDelete () {
+    this.passwords.splice(this.editingCredIdx, 1);
+    this.passwordsChange.emit(this.passwords);
+    this.showForm = false;
+    this.resetEditingCred();
+  }
+  resetEditingCred () {
+    this.editingCred = null;
+    this.editingCredIdx = null;
   }
 }

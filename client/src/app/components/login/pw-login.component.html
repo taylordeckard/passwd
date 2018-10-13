@@ -3,8 +3,8 @@
     <pw-alert [(show)]="alert.show" [msg]="alert.msg" [color]="alert.color"></pw-alert>
     <h3>Login</h3>
     <form [formGroup]="loginForm">
-      <pw-text-input label="Username" autofocus="true" formControlName="username"></pw-text-input>
-      <pw-text-input label="Password" type="password" formControlName="password"></pw-text-input>
+      <pw-input label="Username" autofocus="true" formControlName="username"></pw-input>
+      <pw-input label="Password" type="password" formControlName="password"></pw-input>
       <pw-button *ngIf="loginForm.valid" (click)="onSubmit()">Submit</pw-button>
     </form>
   </div>

@@ -3,9 +3,11 @@
 :host {
   button {
     background: $primary-color;
-    height: 30px;
     cursor: pointer;
+    padding-top: 4px;
+    height: 40px;
     border-style: none;
+    border: 1px solid $grey;
     transition: box-shadow .2s;
     &:active {
       border-style: none;
@@ -19,7 +21,7 @@
     }
     &:focus {
       outline: none;
-      border: 1px solid $dark-color;
+      background: lighten($primary-color, 5%);
     }
   }
 }

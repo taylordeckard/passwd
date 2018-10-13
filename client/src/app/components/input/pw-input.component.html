@@ -5,4 +5,11 @@
       (ngModelChange)="propagateChange(model)"
       [ngClass]="{ 'has-input': model }">
 	<label>{{ label }}</label>
+    <pw-icon *ngIf="isPassword"
+      class="pw-visibility-toggle"
+      [src]="pwVisibilityIconSrc"
+      (click)="toggleType()"
+      color="dark"
+      [title]="pwVisibilityIconTitle">
+    </pw-icon>
 </div>

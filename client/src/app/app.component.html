@@ -4,7 +4,7 @@
 <pw-login *ngIf="!isLoggedIn; else content"></pw-login>
 <ng-template #content>
   <div class="content container text-center">
-    <div class="absolute-center" *ngIf="user">
+    <div *ngIf="user">
       <pw-password-list [(passwords)]="user.data"
          (passwordsChange)="onPasswordsChange($event)">
       </pw-password-list>

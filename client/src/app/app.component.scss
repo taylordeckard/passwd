@@ -9,7 +9,13 @@
 	height: 70px;
 	box-shadow: $base-box-shadow;
 	text-align: center;
+    z-index: 1;
 	h1 {
 		margin-top: 14px;
 	}
+}
+
+.content {
+  position: relative;
+  width: initial;
 }

@@ -10,13 +10,10 @@ import { environment } from '../environments/environment';
 import { ApiService, IconService } from 'app/services';
 
 import { AppComponent } from './app.component';
-import { PwAlertComponent } from 'app/components';
-import { PwButtonComponent } from 'app/components';
-import { PwCredentialComponent } from 'app/components';
-import { PwIconComponent } from 'app/components';
-import { PwLoginComponent } from 'app/components';
-import { PwPasswordListComponent } from 'app/components';
-import { TextInputComponent } from 'app/components';
+import {
+  PwAlertComponent, PwButtonComponent, PwCredentialComponent, PwIconComponent,
+  PwInputComponent, PwLoginComponent, PwPasswordListComponent,
+} from 'app/components';
 
 @NgModule({
   declarations: [
@@ -25,9 +22,9 @@ import { TextInputComponent } from 'app/components';
     PwButtonComponent,
     PwCredentialComponent,
     PwIconComponent,
+    PwInputComponent,
     PwLoginComponent,
     PwPasswordListComponent,
-    TextInputComponent,
   ],
   imports: [
     BrowserAnimationsModule,

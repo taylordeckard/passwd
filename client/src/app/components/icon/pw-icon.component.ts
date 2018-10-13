@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { IconService } from 'app/services';
@@ -8,7 +8,7 @@ import { IconService } from 'app/services';
   templateUrl: './pw-icon.component.html',
   styleUrls: ['./pw-icon.component.scss'],
 })
-export class PwIconComponent implements OnInit {
+export class PwIconComponent implements OnChanges, OnInit {
   @Input() src: string;
   @Input() color: 'white' | 'dark' = 'white';
   @Input() size: 'sm' | 'lg' = 'sm';
@@ -19,6 +19,16 @@ export class PwIconComponent implements OnInit {
   ) {}
 
   ngOnInit () {
+    this.loadSrc();
+  }
+
+  ngOnChanges (changes: SimpleChanges) {
+    if (changes.src) {
+      this.loadSrc();
+    }
+  }
+
+  loadSrc () {
     this.iconService.load(this.src)
       .subscribe((svg: string) => {
         this.svg = this.sanitizer.bypassSecurityTrustHtml(svg);

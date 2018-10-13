@@ -1,4 +1,6 @@
-import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild,
+} from '@angular/core';
 import { fade } from 'app/animations';
 import { Credentials } from 'app/interfaces';
 
@@ -10,6 +12,7 @@ import { Credentials } from 'app/interfaces';
 })
 export class PwCredentialComponent {
   @Input() credential: Credentials;
+  @Output() triggerEdit: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('copyTooltip') copyTooltip: ElementRef;
   constructor (
     private renderer: Renderer2,
@@ -32,5 +35,9 @@ export class PwCredentialComponent {
       this.renderer.setStyle(this.copyTooltip.nativeElement, 'opacity', 0);
       this.renderer.setStyle(this.copyTooltip.nativeElement, 'top', '-12px');
     }, 600);
+  }
+
+  editCredential () {
+    this.triggerEdit.emit(true);
   }
 }
