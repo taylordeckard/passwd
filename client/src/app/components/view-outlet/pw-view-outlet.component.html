@@ -1,0 +1,11 @@
+<ng-container [ngSwitch]="view">
+  <ng-container *ngSwitchCase="'list'">
+    <pw-password-list></pw-password-list>
+  </ng-container>
+  <ng-container *ngSwitchCase="'form'">
+    <pw-password-form></pw-password-form>
+  </ng-container>
+  <ng-container *ngSwitchCase="'key'">
+    <pw-password-key></pw-password-key>
+  </ng-container>
+</ng-container>

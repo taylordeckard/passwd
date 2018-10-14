@@ -4,4 +4,7 @@ export { PwCredentialComponent } from './credential/pw-credential.component';
 export { PwIconComponent } from './icon/pw-icon.component';
 export { PwInputComponent } from './input/pw-input.component';
 export { PwLoginComponent } from './login/pw-login.component';
+export { PwPasswordFormComponent } from './password-form/pw-password-form.component';
+export { PwPasswordKeyComponent } from './password-key/pw-password-key.component';
 export { PwPasswordListComponent } from './password-list/pw-password-list.component';
+export { PwViewOutletComponent } from './view-outlet/pw-view-outlet.component';

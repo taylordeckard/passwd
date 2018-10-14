@@ -4,7 +4,7 @@ import { catchError } from 'rxjs/operators';
 
 import { Credentials, User } from 'app/interfaces';
 
-import { ApiService } from 'app/services';
+import { ApiService, CryptoService, AppStateService } from 'app/services';
 
 @Component({
   selector: 'pw-root',
@@ -12,11 +12,15 @@ import { ApiService } from 'app/services';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnDestroy, OnInit {
-  title = 'passwd';
   isLoggedIn: boolean;
   isLoggedInSub: Subscription;
+  title = 'passwd';
   user: User;
-  constructor (private api: ApiService) {}
+  constructor (
+    private api: ApiService,
+    private crypto: CryptoService,
+    private state: AppStateService,
+  ) {}
   ngOnDestroy ()  {
     if (this.isLoggedInSub) {
       this.isLoggedInSub.unsubscribe();
@@ -28,18 +32,12 @@ export class AppComponent implements OnDestroy, OnInit {
         this.api.getUser()
           .subscribe(response => {
             this.user = response;
+            this.state.user = this.user;
           });
       }
       this.isLoggedIn = change;
     });
   }
   onPasswordsChange (passwords: Credentials[]) {
-    this.api.updateUser(this.user)
-    .pipe(catchError(err => {
-      return of();
-    }))
-    .subscribe(result => {
-      console.log(result);
-    });
   }
 }

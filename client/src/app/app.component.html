@@ -5,9 +5,7 @@
 <ng-template #content>
   <div class="content container text-center">
     <div *ngIf="user">
-      <pw-password-list [(passwords)]="user.data"
-         (passwordsChange)="onPasswordsChange($event)">
-      </pw-password-list>
+      <pw-view-outlet></pw-view-outlet>
     </div>
   </div>
 </ng-template>

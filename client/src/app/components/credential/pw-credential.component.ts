@@ -3,6 +3,7 @@ import {
 } from '@angular/core';
 import { fade } from 'app/animations';
 import { Credentials } from 'app/interfaces';
+import { AppStateService } from 'app/services';
 
 @Component({
   selector: 'pw-credential',
@@ -12,10 +13,10 @@ import { Credentials } from 'app/interfaces';
 })
 export class PwCredentialComponent {
   @Input() credential: Credentials;
-  @Output() triggerEdit: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('copyTooltip') copyTooltip: ElementRef;
   constructor (
     private renderer: Renderer2,
+    private state: AppStateService,
   ) {}
   copyPassword () {
     const copyElem: any = document.createElement('textarea');
@@ -38,6 +39,6 @@ export class PwCredentialComponent {
   }
 
   editCredential () {
-    this.triggerEdit.emit(true);
+    this.state.editTarget = this.credential;
   }
 }
