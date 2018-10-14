@@ -66,6 +66,7 @@ export class PwPasswordKeyComponent implements OnDestroy, OnInit {
     }
   }
   onKeyChange (key: string) {
+    if (!this.encryptedPasswords) { return; }
     this.decryptedPasswords = this.crypto.decrypt(this.encryptedPasswords, key);
     try {
       JSON.parse(this.decryptedPasswords);
