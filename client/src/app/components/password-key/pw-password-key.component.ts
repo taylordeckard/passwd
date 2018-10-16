@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { AppStateService, CryptoService } from 'app/services';
+import { ApiService, AppStateService, CryptoService } from 'app/services';
 import { fade } from 'app/animations';
 import { Credentials } from 'app/interfaces';
 import { PwListView } from 'app/enums';
@@ -22,6 +22,7 @@ export class PwPasswordKeyComponent implements OnDestroy, OnInit {
   encryptedPasswordsSub: Subscription;
   successfulDecryption: boolean;
   constructor (
+    private api: ApiService,
     private crypto: CryptoService,
     private fb: FormBuilder,
     private state: AppStateService,
@@ -41,8 +42,10 @@ export class PwPasswordKeyComponent implements OnDestroy, OnInit {
     this.onKeyChange(key);
     this.encryptedPasswordsSub = this.state.encryptedPasswordsSubject
       .subscribe((ep: string) => {
-        this.encryptedPasswords = ep;
-        this.decryptedPasswords = this.crypto.decrypt(ep, this.keyForm.value.key);
+        if (ep) {
+          this.encryptedPasswords = ep;
+          this.decryptedPasswords = this.crypto.decrypt(ep, this.keyForm.value.key);
+        }
       });
     this.keyChangesSub = this.keyForm.valueChanges.subscribe((value: { key: string }) => {
       this.onKeyChange(value.key);
@@ -59,11 +62,14 @@ export class PwPasswordKeyComponent implements OnDestroy, OnInit {
   saveKey () {
     this.crypto.key = this.keyForm.value.key;
     this.state.view = PwListView.LIST;
+    this.state.passwords = this.state.passwords;
+    if (!this.encryptedPasswords) { return; }
     try {
       this.state.passwords = JSON.parse(this.crypto.decrypt(this.encryptedPasswords));
     } catch (e) {
       this.state.passwords = [];
     }
+    this.state.encryptedPasswords = null;
   }
   onKeyChange (key: string) {
     if (!this.encryptedPasswords) { return; }

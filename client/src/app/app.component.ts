@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Credentials, User } from 'app/interfaces';
 
 import { ApiService, CryptoService, AppStateService } from 'app/services';
+import { PwListView } from 'app/enums';
 
 @Component({
   selector: 'pw-root',
@@ -33,11 +34,12 @@ export class AppComponent implements OnDestroy, OnInit {
           .subscribe(response => {
             this.user = response;
             this.state.user = this.user;
+            if (this.state.passwords.length === 0) {
+              this.state.view = PwListView.KEY;
+            }
           });
       }
       this.isLoggedIn = change;
     });
-  }
-  onPasswordsChange (passwords: Credentials[]) {
   }
 }

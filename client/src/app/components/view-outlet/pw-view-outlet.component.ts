@@ -21,6 +21,7 @@ export class PwViewOutletComponent implements OnDestroy, OnInit {
     }
   }
   ngOnInit () {
+    this.view = this.state.view;
     this.viewSub = this.state.viewSubject
       .subscribe((view: PwListView) => {
         this.view = view;

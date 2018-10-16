@@ -13,7 +13,7 @@ export class AppStateService {
   private _encryptedPasswords: string;
   private _passwords: Credentials[] = [];
   private _user: User;
-  private _view: PwListView;
+  private _view: PwListView = PwListView.LIST;
   public editTargetSubject: Subject<Credentials> = new Subject<Credentials>();
   public encryptedPasswordsSubject: Subject<string> = new Subject<string>();
   public passwordsSubject: Subject<Credentials[]> = new Subject<Credentials[]>();
