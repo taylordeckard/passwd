@@ -4,6 +4,7 @@
 
 body {
 	background-image: linear-gradient(to bottom left, $light-color, white);
+    background-attachment: fixed;
 	font-family: "Verdana";
 	margin: 0;
 	height: calc(100vh - 100px);
