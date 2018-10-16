@@ -14,6 +14,7 @@ import { PwListView } from 'app/enums';
   animations: [...fade],
 })
 export class PwPasswordListComponent implements OnDestroy, OnInit {
+  filter: string;
   passwords: Credentials[];
   passwordsSub: Subscription;
   constructor (
@@ -36,5 +37,13 @@ export class PwPasswordListComponent implements OnDestroy, OnInit {
   }
   enterKeyView () {
     this.state.view = PwListView.KEY;
+  }
+  onFilter () {
+    if (!this.filter) {
+      this.passwords = this.state.passwords;
+    } else {
+      const regex = new RegExp(`.*${this.filter}.*`, 'i');
+      this.passwords = this.state.passwords.filter(p => regex.test(p.title));
+    }
   }
 }
