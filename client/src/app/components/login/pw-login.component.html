@@ -5,7 +5,11 @@
     <form [formGroup]="loginForm">
       <pw-input label="Username" autofocus="true" formControlName="username"></pw-input>
       <pw-input label="Password" type="password" formControlName="password"></pw-input>
-      <pw-button *ngIf="loginForm.valid" (click)="onSubmit()">Submit</pw-button>
+      <div *ngIf="loginForm.valid" [@fade]>
+        <pw-button (click)="onSubmit()">
+          <div class="btn-text">Submit</div>
+        </pw-button>
+      </div>
     </form>
   </div>
 </div>
