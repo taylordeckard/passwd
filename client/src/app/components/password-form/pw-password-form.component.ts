@@ -5,7 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { fade } from 'app/animations';
 import { Credentials } from 'app/interfaces';
 import { PwListView } from 'app/enums';
-import { AppStateService } from 'app/services';
+import { constants } from 'app/shared';
+import { AppStateService, CryptoService, UtilsService } from 'app/services';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -21,8 +22,10 @@ export class PwPasswordFormComponent implements OnDestroy, OnInit {
   editTarget: Credentials;
   editTargetSub: Subscription;
   constructor (
+    private crypto: CryptoService,
     private fb: FormBuilder,
     private state: AppStateService,
+    private utils: UtilsService,
   ) {
     this.resetCredForm();
   }
@@ -84,5 +87,12 @@ export class PwPasswordFormComponent implements OnDestroy, OnInit {
   onCredDelete () {
     this.state.deleteCredential(this.editTarget);
     this.state.editTarget = null;
+  }
+
+  generatePassword () {
+    this.pwForm.controls.password.setValue(
+      this.crypto.generatePassword(constants.defaultPasswordLength),
+    );
+    this.utils.copyToClipboard(this.pwForm.value.password);
   }
 }

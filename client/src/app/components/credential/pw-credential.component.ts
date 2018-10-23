@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { fade } from 'app/animations';
 import { Credentials } from 'app/interfaces';
-import { AppStateService } from 'app/services';
+import { AppStateService, UtilsService } from 'app/services';
 
 @Component({
   selector: 'pw-credential',
@@ -17,16 +17,12 @@ export class PwCredentialComponent {
   constructor (
     private renderer: Renderer2,
     private state: AppStateService,
+    private utils: UtilsService,
   ) {}
+
   copyPassword () {
-    const copyElem: any = document.createElement('textarea');
-    copyElem.style.opacity = '0';
-    copyElem.value = this.credential.password;
-    document.body.appendChild(copyElem);
-    copyElem.select();
-    document.execCommand('copy');
-    document.body.removeChild(copyElem);
-    this.showPasswordCopiedTooltip();
+    this.utils.copyToClipboard(this.credential.password);
+    // this.showPasswordCopiedTooltip();
   }
 
   showPasswordCopiedTooltip () {

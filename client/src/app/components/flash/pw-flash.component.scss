@@ -1,0 +1,10 @@
+:host {
+  position: fixed;
+  transition: opacity .4s, top 1s;
+  opacity: 0;
+  width: 100px;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 30;
+  text-align: center;
+}
