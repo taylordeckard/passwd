@@ -5,6 +5,13 @@
       (ngModelChange)="propagateChange(model)"
       [ngClass]="{ 'has-input': model }">
 	<label>{{ label }}</label>
+    <pw-icon *ngIf="model"
+      class="clear-btn"
+      [src]="pwCloseIconSrc"
+      (click)="clearModel()"
+      color="dark"
+      title="Clear">
+    </pw-icon>
     <pw-icon *ngIf="isPassword"
       class="pw-visibility-toggle"
       [src]="pwVisibilityIconSrc"

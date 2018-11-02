@@ -1,0 +1,8 @@
+<pw-login *ngIf="!isLoggedIn; else content"></pw-login>
+<ng-template #content>
+  <div class="content container text-center">
+    <div *ngIf="user">
+      <pw-view-outlet></pw-view-outlet>
+    </div>
+  </div>
+</ng-template>

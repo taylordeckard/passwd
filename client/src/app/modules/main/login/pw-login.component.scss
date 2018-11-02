@@ -1,4 +1,4 @@
-@import '../../../variables.scss';
+@import '../../../../variables.scss';
 
 :host {
   .container {
@@ -14,7 +14,7 @@
         width: calc(100vw - 48px);
       }
       @media screen and (min-width: 375px) {
-        width: 350px;
+        width: $small-screen-width;
       }
     }
     .btn-text {
