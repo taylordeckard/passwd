@@ -1,5 +1,6 @@
 import {
-  AfterViewInit, Component, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2, ViewChild,
+  AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output,
+  Renderer2, ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputType } from 'app/enums';
@@ -20,7 +21,10 @@ export class PwInputComponent implements AfterViewInit, ControlValueAccessor, On
   @Input() label: string;
   @Input() type: InputType = InputType.TEXT;
   @Input() autofocus: boolean;
+  @Input() focus: boolean;
+  @Output() focusChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('input') input: ElementRef;
+  blurListener: () => void;
   focusListener: () => void;
   isPassword: boolean;
   model: string;
@@ -29,6 +33,7 @@ export class PwInputComponent implements AfterViewInit, ControlValueAccessor, On
   pwVisibilityIconTitle = 'Show Password';
   constructor (private renderer: Renderer2) {}
   ngOnDestroy () {
+    this.blurListener();
     this.focusListener();
   }
   ngOnInit () {
@@ -52,8 +57,12 @@ export class PwInputComponent implements AfterViewInit, ControlValueAccessor, On
     if (this.autofocus) {
       this.input.nativeElement.focus();
     }
-    this.focusListener = this.renderer.listen(this.input.nativeElement, 'focus', () => {
+    this.blurListener = this.renderer.listen(this.input.nativeElement, 'blur', () => {
       this.propagateTouch();
+      this.focusChange.emit(false);
+    });
+    this.focusListener = this.renderer.listen(this.input.nativeElement, 'focus', () => {
+      this.focusChange.emit(true);
     });
   }
   toggleType () {

@@ -14,4 +14,10 @@
       }
     }
   }
+  .error-msg {
+    margin-left: $base-margin;
+    margin-bottom: $base-margin;
+    color: $danger-color;
+    font-size: 12px;
+  }
 }

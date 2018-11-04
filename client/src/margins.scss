@@ -1,7 +1,3 @@
-$base-margin: 20px;
-$dbl-margin: 2 * $base-margin;
-$half-margin: .5 * $base-margin;
-$qtr-margin: .25 * $base-margin;
 $sides: 'left', 'top', 'right', 'bottom';
 .base-margin {
   @each $side in $sides {

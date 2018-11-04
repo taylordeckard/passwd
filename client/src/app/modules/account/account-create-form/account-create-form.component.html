@@ -1,7 +1,33 @@
 <div class="form-container">
   <form [formGroup]="accountForm">
     <pw-input label="Email" autofocus="true" formControlName="email"></pw-input>
-    <pw-input label="Password" formControlName="password"></pw-input>
-    <pw-input label="Repeat Password" formControlName="repeatPassword"></pw-input>
+    <ng-container  *ngIf="email.invalid && email.touched">
+      <ng-container *ngFor="let error of email.errors | keyvalue">
+        <div [ngSwitch]="error.key" class="error-msg">
+          <div *ngSwitchCase="'required'">Email is required</div>
+          <div *ngSwitchCase="'email'">Must be a valid email</div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <pw-input label="Password" formControlName="password" type="password"
+    [(focus)]="passwordFocus"></pw-input>
+    <ng-container  *ngIf="password.invalid">
+      <ng-container *ngFor="let error of password.errors | keyvalue">
+        <div class="error-msg" *ngIf="error.key === 'required'
+          && password.touched">Password is required</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'passwordMismatch' && !passwordFocus">Passwords do not match</div>
+      </ng-container>
+    </ng-container>
+    <pw-input label="Repeat Password" formControlName="repeatPassword" type="password"
+      [(focus)]="passwordFocus"></pw-input>
+    <ng-container  *ngIf="repeatPassword.invalid">
+      <ng-container *ngFor="let error of repeatPassword.errors | keyvalue">
+        <div class="error-msg" *ngIf="error.key === 'required'
+          && repeatPassword.touched">Repeat Password is required</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'passwordMismatch' && !passwordFocus">Passwords do not match</div>
+      </ng-container>
+    </ng-container>
   </form>
 </div>
