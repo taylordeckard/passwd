@@ -11,12 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "bunyan": "^1.8.12",
+    "handlebars": "^4.0.12",
     "koa": "^2.5.3",
     "koa-body": "^4.0.4",
     "koa-bunyan": "^1.0.1",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "lodash": "^4.17.11",
+    "nodemailer": "^4.6.8",
     "redis": "^2.8.0"
   }
 }

@@ -6,12 +6,7 @@
     justify-content: center;
     form {
       max-width: 600px;
-      @media screen and (min-width: 375px) {
-        width: $small-screen-width;
-      }
-      @media screen and (min-width: 375px) {
-        width: calc(100vw - 48px);
-      }
+	  @include responsive-width;
     }
   }
   .error-msg {

@@ -1,4 +1,5 @@
-<div class="form-container">
+<div class="form-container" *ngIf="!submitted">
+  <pw-alert [(show)]="alert.show" [msg]="alert.msg" [color]="alert.color"></pw-alert>
   <form [formGroup]="accountForm">
     <pw-input label="Email" autofocus="true" formControlName="email"></pw-input>
     <ng-container  *ngIf="email.invalid && email.touched">
@@ -17,6 +18,21 @@
           && password.touched">Password is required</div>
         <div class="error-msg"
           *ngIf="error.key === 'passwordMismatch' && !passwordFocus">Passwords do not match</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'missingSpecialChar' 
+		  && password.touched">Password must include one special character</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'missingNumber' 
+		  && password.touched">Password must include one number</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'missingUppercase' 
+		  && password.touched">Password must include one uppercase letter</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'missingLowercase' 
+		  && password.touched">Password must include one lowercase letter</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'insufficientLength' 
+		  && password.touched">Password must be at least {{minNumChars}} characters</div>
       </ng-container>
     </ng-container>
     <pw-input label="Repeat Password" formControlName="repeatPassword" type="password"
@@ -29,5 +45,12 @@
           *ngIf="error.key === 'passwordMismatch' && !passwordFocus">Passwords do not match</div>
       </ng-container>
     </ng-container>
+	<div class="text-center" *ngIf="accountForm.valid">
+		<pw-button>Submit</pw-button>
+	</div>
   </form>
+</div>
+<div *ngIf="Submitted" class="absolute-center">
+	<h1>Check your email, then come back and login...</h1>
+	<small>We sent you an email with a link to verify your account. Once you've clicked it, come back and login...</small>
 </div>

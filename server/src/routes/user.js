@@ -1,22 +1,25 @@
 const _ = require('lodash');
 const redis = require('../db');
+const { Mailer, Template } = require('../mailer');
 const utils = require('../utils');
 
 module.exports = {
 	async createUser (ctx) {
-		const { username, password } = ctx.request.body;
+		const { email, password } = ctx.request.body;
 
 		// check if user exists
-		if (await redis.client.get(utils.getRedisUserKey(username))) {
-			ctx.throw(409, 'username taken');
+		if (await redis.client.get(utils.getRedisUserKey(email))) {
+			ctx.throw(409, 'email taken');
 		}
 
-		await redis.client.set(utils.getRedisUserKey(username), {
+		await redis.client.set(utils.getRedisUserKey(email), {
 			password: utils.encrypt(password),
-			username,
+			email,
 		});
 
-		ctx.body = username;
+		Mailer.send(email, Template.VerifyEmailTemplate);
+
+		ctx.body = email;
 	},
 	async getUser (ctx) {
 		const username = ctx.state.user.username;

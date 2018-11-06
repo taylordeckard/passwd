@@ -16,6 +16,9 @@ body {
       color: lighten($link-color, 5%);
     }
   }
+  .container {
+	  width: initial;
+  }
 }
 
 .text {
