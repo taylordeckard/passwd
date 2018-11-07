@@ -24,7 +24,10 @@ export class ApiService {
   public updateUser(user: User): Observable<any> {
     return this.http.put(`${constants.backendBaseUrl}/user`, user);
   }
-  public createUser(user: NewUserForm): Observable<any> {
-    return this.http.post(`${constants.backendBaseUrl}/user`, user);
+  public createUser(token: string): Observable<any> {
+    return this.http.post(`${constants.backendBaseUrl}/user`, { token });
+  }
+  public register(user: NewUserForm) {
+    return this.http.post(`${constants.backendBaseUrl}/register`, user);
   }
 }

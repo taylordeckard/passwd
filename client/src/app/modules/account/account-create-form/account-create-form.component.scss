@@ -1,6 +1,11 @@
 @import '../../../../variables.scss';
 
 :host {
+  .alert-container {
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: $base-margin;
+  }
   .form-container {
     display: flex;
     justify-content: center;

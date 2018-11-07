@@ -10,7 +10,7 @@ const htmlTemplates = {};
 let baseTemplate;
 try {
 	baseTemplate = fs.readFileSync(path.resolve(rootDir, 'mailer', 'templates', 'base-template.html'), 'utf8');
-	htmlTemplates.VerifyEmailTemplate = fs.readFileSync(path.resolve(rootDir, 'mailer', 'templates', 'verify-email-template.html'), 'utf8');
+	htmlTemplates.loadVerifyEmailTemplate = fs.readFileSync(path.resolve(rootDir, 'mailer', 'templates', 'verify-email-template.html'), 'utf8');
 } catch (e) {
 	logger.error('Failed to read email template files');
 }

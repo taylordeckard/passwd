@@ -24,7 +24,7 @@ export class PwAccountCreateFormComponent implements OnDestroy, OnInit {
   alert: AlertProps = {
     show: false,
     color: AlertColor.DANGER,
-    msg: 'Email is in use. Do you already have an account?',
+    msg: '',
   };
   accountForm: FormGroup;
   passwordFocus: boolean;
@@ -126,11 +126,14 @@ export class PwAccountCreateFormComponent implements OnDestroy, OnInit {
   onSubmit () {
     const email = this.accountForm.value.email;
     const password = this.accountForm.value.password;
-    this.api.createUser({ email, password })
+    this.api.register({ email, password })
       .pipe(catchError(error => {
         console.log(error);
+        this.alert.show = true;
         if (error.status === 409) {
-          this.alert.show = true;
+          this.alert.msg = 'Email is in use. Do you already have an account?';
+        } else {
+          this.alert.msg = 'An unexpected error occurred. Try again in a few minutes...';
         }
         return of();
       }))

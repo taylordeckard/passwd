@@ -20,4 +20,7 @@ module.exports = {
 	getRedisCookieKey (cookie) {
 		return `${constants.redisKey.cookie}:${cookie}`;
 	},
+	getConstant (key) {
+		return constants.env[process.env.NODE_ENV][key];
+	},
 };

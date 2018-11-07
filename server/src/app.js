@@ -6,6 +6,7 @@ const logger = require('./logger');
 const koaLogger = require('koa-bunyan')(logger);
 const {
 	login,
+	register,
 	user: {
 		createUser,
 		getUser,
@@ -23,6 +24,7 @@ app.keys = constants.appKeys;
 
 // route definitions
 router.post('/api/login', login)
+	.post('/api/register', register)
 	.get('/api/user', setUser, getUser)
 	.post('/api/user', createUser)
 	.put('/api/user', setUser, updateUser);
@@ -31,5 +33,7 @@ app.use(router.routes());
 
 // serve static files
 app.use(serve(`${__dirname}/public`));
+
+logger.info('ENVIRONMENT: ', process.env.NODE_ENV);
 
 app.listen(3000);

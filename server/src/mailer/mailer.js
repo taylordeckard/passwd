@@ -13,15 +13,14 @@ class Mailer {
 	constructor () {
 		this.options = {
 			host: mailerCfg.host,
-			// host: 'mail.privateemail.com',
 			port: 465,
 			auth: mailerCfg.auth,
 		};
+		this.isProd = process.env.NODE_ENV === 'production';
 		if (this.isProd) {
 			logger.info('Mailer transporter initialized...');
 			this.transporter = nodemailer.createTransport(this.options);
 		}
-		this.isProd = process.env.NODE_ENV === 'production';
 	}
 	/**
 	 * Sends an email
@@ -34,7 +33,7 @@ class Mailer {
 			return;
 		}
 		const mailOptions = {
-			from: `"passwd"<${mailerCfg.user}>`,
+			from: `"passwd"<${mailerCfg.auth.user}>`,
 			to: recipient,
 			subject: _.get(content, 'subject'),
 			html: _.get(content, 'body'),

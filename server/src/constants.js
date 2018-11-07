@@ -10,4 +10,12 @@ module.exports = {
 		strategy: 'aes-256-cbc',
 		key: '<change_this_in_production>',
 	},
+	env: {
+		development: {
+			verifyEmailBaseUrl: 'http://localhost:4200/verify/',
+		},
+		production: {
+			verifyEmailBaseUrl: 'https://www.taylordeckard.me/passwd/verify/',
+		},
+	},
 };

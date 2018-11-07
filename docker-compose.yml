@@ -15,9 +15,9 @@ services:
         build: 
             context: ./server
             dockerfile: ./Dockerfile
-        command: nodemon --inspect=0.0.0.0:9229 src/app.js
+        command: npm run dev
         dns: 
-            - 127.0.0.1
+            - 8.8.8.8
         links:
             - 'redis:redis'
         network_mode: "bridge"

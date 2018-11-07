@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="137px" height="127px" viewBox="0 0 137 127" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path d="M124.06736,40.3300702 C124.260026,40.6923931 124.460386,41.0889649 124.66844,41.5197855 C124.703387,41.6368998 124.73714,41.7533 124.769701,41.8689861 C127.389589,49.8450557 127.697017,56.4536078 125.691986,61.6946424 C120.92898,74.1448578 112.114448,80.8886589 99.2483898,81.9260459 L89,82.1067986 L89,114 L71,114 L71,24 L99.2483898,24 C99.2483898,24 107.063524,24.1979975 114.268041,29.045963 C115.114213,29.6153575 116.911323,30.5931501 120.427057,34.5492219 C121.482333,35.7366682 122.695767,37.6636176 124.06736,40.3300702 Z M109,51.4922674 C108.968863,51.502338 108.952785,51.5021611 108.951766,51.4917368 C108.598368,47.8771831 108.152668,47.2843385 107.822749,46.5716999 C106.997485,44.7890913 105.616458,43.3616207 105.395209,43.0669546 C101.436542,37.7946673 95.2676245,37.9800185 95.2676245,37.9800185 L89.9317324,37.9800185 L89.9317324,67.0211846 L95.5224018,67.0211846 C100.115302,66.6916995 103.876457,64.4609037 106.805868,60.3287973 C107.655677,59.1300918 108.756348,56.4705085 109.028413,54 L109,54 L109,51.7423812 C108.985712,51.6577211 108.969654,51.5741408 108.951766,51.4917368 C108.932608,51.4034876 108.948686,51.3007275 109,51.1834564 L109,51.4922674 Z" id="path-1"></path>
+        <filter x="-3.6%" y="-2.2%" width="107.1%" height="104.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="no-bg" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M71,92 L11,92 L11,14 L89,14 L89,24 L98,24 C114.016258,24 127,36.9837423 127,53 C127,69.0162577 114.016258,82 98,82 L89,82 L89,92 L89,114 L71,114 L71,92 Z M90,38 L90,67 L94.5,67 C102.508129,67 109,60.5081289 109,52.5 C109,44.4918711 102.508129,38 94.5,38 L90,38 Z" id="Combined-Shape" fill="#979797"></path>
+        <g id="Combined-Shape">
+            <use fill="#D8D8D8" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+        </g>
+        <rect id="Rectangle-6" fill="#787878" x="11" y="76" width="60" height="16"></rect>
+        <polygon id="Rectangle-6" fill="#B4B4B4" points="11 14 89 14 89 23.9960308 71.0270757 24 71.0270757 30 11 30"></polygon>
+    </g>
+</svg>
