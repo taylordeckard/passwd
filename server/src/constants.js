@@ -1,21 +1,28 @@
 module.exports = {
-	appKeys: ['<change_this_in_production>'],
+	appKeys: ['<<APP_TEMP_KEY>>'],
 	cookieExpiry: 180, // 180s / 60s = 3min
 	cookieName: 'passwdCookie',
-	redisKey: {
-		cookie: 'cookie',
-		user: 'user',
-	},
 	crypto: {
 		strategy: 'aes-256-cbc',
-		key: '<change_this_in_production>',
+		key: '<<CRYPTO_TEMP_KEY>>',
 	},
 	env: {
 		development: {
-			verifyEmailBaseUrl: 'http://localhost:4200/verify/',
+			verifyEmailBaseUrl: 'http://localhost:4200/account/verify/',
 		},
 		production: {
-			verifyEmailBaseUrl: 'https://www.taylordeckard.me/passwd/verify/',
+			verifyEmailBaseUrl: 'https://www.taylordeckard.me/passwd/account/verify/',
 		},
+	},
+	mailerCfg: {
+		auth: {
+			pass: '<<MAILER_TEMP_PASS>>',
+			user: 'admin@taylordeckard.me',
+		},
+		host: 'mail.privateemail.com',
+	},
+	redisKey: {
+		cookie: 'cookie',
+		user: 'user',
 	},
 };

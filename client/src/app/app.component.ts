@@ -7,9 +7,12 @@ import { Credentials, User } from 'app/interfaces';
 import { ApiService, CryptoService, AppStateService } from 'app/services';
 import { PwListView } from 'app/enums';
 
+import { slideDown } from 'app/animations';
+
 @Component({
   selector: 'pw-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [...slideDown],
 })
 export class AppComponent {}

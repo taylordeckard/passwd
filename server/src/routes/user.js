@@ -6,7 +6,13 @@ module.exports = {
 	async createUser (ctx) {
 		const { token } = ctx.request.body;
 		const user = await redis.client.get(token);
-		await redis.client.set(user.email, user);
+		if (!user) {
+			ctx.throw(400, 'invalid verification token');
+		}
+		await redis.client.set(utils.getRedisUserKey(user.email), {
+			username: user.email,
+			password: user.password,
+		});
 		ctx.body = { email: user.email };
 	},
 	async getUser (ctx) {

@@ -15,6 +15,7 @@ module.exports = async (ctx) => {
 		password: utils.encrypt(password),
 		email,
 	}, 'EX', 172800); // Expire in 2 days
+
 	Mailer.send(email, {
 		body: Templates.loadVerifyEmailTemplate({
 			token,

@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer'),
 	logger = require('../logger.js'),
-	mailerCfg = require('../config/mailer-config'),
+	{ mailerCfg } = require('../constants'),
 	_ = require('lodash');
 
 /**

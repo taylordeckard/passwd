@@ -1,0 +1,7 @@
+<div class="alert-container">
+  <pw-alert [(show)]="alert.show" [msg]="alert.msg" [color]="alert.color"></pw-alert>
+</div>
+<div class="absolute-center text-center" *ngIf="!alert.show">
+  <h1>Thanks for verifying!</h1>
+  <a routerLink="/">Click here to login...</a>
+</div>
