@@ -1,7 +1,7 @@
 module.exports = {
 	auth: {
 		pass: '<password_goes_here>',
-		user: 'admin@home-share.me',
+		user: 'admin@taylordeckard.me',
 	},
 	host: 'mail.privateemail.com',
 };

@@ -1,6 +1,9 @@
 <div class="alert-container">
   <pw-alert [(show)]="alert.show" [msg]="alert.msg" [color]="alert.color"></pw-alert>
 </div>
+<div class="text-center" *ngIf="!submitted">
+  <h2>Create an Account</h2>
+</div>
 <div class="form-container" *ngIf="!submitted">
   <form [formGroup]="accountForm">
     <pw-input label="Email" autofocus="true" formControlName="email"></pw-input>
