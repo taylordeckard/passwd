@@ -13,6 +13,8 @@ module.exports = {
 			username: user.email,
 			password: user.password,
 		});
+
+		redis.client.del(token); // purposefully not awaiting
 		ctx.body = { email: user.email };
 	},
 	async getUser (ctx) {
