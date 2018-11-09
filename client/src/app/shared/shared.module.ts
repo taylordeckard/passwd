@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   PwAlertComponent,
   PwButtonComponent,
+  PwConfirmModalComponent,
   PwCredentialComponent,
   PwFlashComponent,
   PwIconComponent,
@@ -15,6 +16,7 @@ import { PwFlashDirective } from 'app/directives';
   declarations: [
     PwAlertComponent,
     PwButtonComponent,
+    PwConfirmModalComponent,
     PwCredentialComponent,
     PwFlashComponent,
     PwFlashDirective,
@@ -25,6 +27,7 @@ import { PwFlashDirective } from 'app/directives';
   exports: [
     PwAlertComponent,
     PwButtonComponent,
+    PwConfirmModalComponent,
     PwCredentialComponent,
     PwFlashComponent,
     PwFlashDirective,

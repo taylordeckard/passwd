@@ -1,0 +1,9 @@
+<div class="modal" *ngIf="show" [@fade]>
+  <div class="modal__body absolute-center">
+    <h2 class="modal__msg" [innerHtml]="msg"></h2>
+    <pw-button class="base-margin-right"
+      color="danger"
+      (click)="clickedCancel()">Cancel</pw-button>
+    <pw-button (click)="confirmed.emit()">Confirm</pw-button>
+  </div>
+</div>

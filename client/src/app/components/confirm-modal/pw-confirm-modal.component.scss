@@ -1,0 +1,22 @@
+@import '../../../variables.scss';
+
+:host {
+  .modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba($dark-color, .5);
+    z-index: 1000;
+    .modal__body {
+      @include responsive-width;
+      background: white;
+      padding: $base-margin;
+      box-shadow: $base-box-shadow;
+      .modal__msg {
+        margin-bottom: 60px;
+      }
+    }
+  }
+}

@@ -14,6 +14,10 @@ export class PwFlashDirective implements OnDestroy {
   onClick (event: MouseEvent) {
     this.appendTooltipToBody(event);
   }
+  @HostListener('click', ['$event'])
+  onTouchStart (event: TouchEvent) {
+    this.appendTooltipToBody(event);
+  }
   constructor (
     private appRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -22,7 +26,15 @@ export class PwFlashDirective implements OnDestroy {
     private renderer: Renderer2,
   ) {}
 
-  appendTooltipToBody (mouseEvent: MouseEvent) {
+  appendTooltipToBody (event: MouseEvent | TouchEvent) {
+    let clientX, clientY;
+    if (event instanceof MouseEvent) {
+      clientX = event.clientX;
+      clientY = event.clientY;
+    } else {
+      clientX = event.touches[0].clientX;
+      clientY = event.touches[0].clientY;
+    }
     this.removeTooltip();
 
     // 1. Create a component reference from the component
@@ -30,8 +42,8 @@ export class PwFlashDirective implements OnDestroy {
       .resolveComponentFactory(PwFlashComponent)
       .create(this.injector);
     this.componentRef.instance.message = this.message;
-    this.componentRef.instance.positionX = mouseEvent.clientX;
-    this.componentRef.instance.positionY = mouseEvent.clientY;
+    this.componentRef.instance.positionX = clientX;
+    this.componentRef.instance.positionY = clientY;
 
     // 2. Attach component to the appRef so that it's inside the ng component tree
     this.appRef.attachView(this.componentRef.hostView);
@@ -46,10 +58,10 @@ export class PwFlashDirective implements OnDestroy {
     // 5. Show the flash for a second and then remove it
     setTimeout(() => {
       this.renderer.setStyle(domElem, 'opacity', 1);
-      this.renderer.setStyle(domElem, 'top', `${mouseEvent.clientY - 50}px`);
+      this.renderer.setStyle(domElem, 'top', `${clientY - 50}px`);
       setTimeout(() => {
         this.renderer.setStyle(domElem, 'opacity', 0);
-        this.renderer.setStyle(domElem, 'top', `${mouseEvent.clientY - 46}px`);
+        this.renderer.setStyle(domElem, 'top', `${clientY - 46}px`);
         setTimeout(this.removeTooltip.bind(this), 600);
       }, 600);
     });

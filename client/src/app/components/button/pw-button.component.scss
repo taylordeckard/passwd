@@ -3,6 +3,15 @@
 :host {
   button {
     background: $primary-color;
+    &.danger-color {
+      background: $danger-color;
+      &:hover {
+        background: darken($danger-color, 5%);
+      }
+      &:focus {
+        background: lighten($danger-color, 5%);
+      }
+    }
     cursor: pointer;
     padding-top: 4px;
     height: 40px;

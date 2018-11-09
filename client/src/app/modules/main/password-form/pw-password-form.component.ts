@@ -16,11 +16,12 @@ import { Subscription } from 'rxjs';
   animations: [...fade],
 })
 export class PwPasswordFormComponent implements OnDestroy, OnInit {
-  pwForm: FormGroup;
-  passwords: Credentials[];
-  passwordsSub: Subscription;
   editTarget: Credentials;
   editTargetSub: Subscription;
+  passwords: Credentials[];
+  passwordsSub: Subscription;
+  pwForm: FormGroup;
+  showModal = false;
   constructor (
     private crypto: CryptoService,
     private fb: FormBuilder,
