@@ -4,7 +4,9 @@
     <h3>Login</h3>
     <form [formGroup]="loginForm">
       <pw-input label="Username" autofocus="true" formControlName="username"></pw-input>
-      <pw-input label="Password" type="password" formControlName="password"></pw-input>
+      <pw-input label="Password" type="password" formControlName="password"
+        (keypress)="onKeypress($event)">
+      </pw-input>
       <div *ngIf="loginForm.valid" [@fade]>
         <pw-button (click)="onSubmit()">
           <div class="btn-text">Submit</div>

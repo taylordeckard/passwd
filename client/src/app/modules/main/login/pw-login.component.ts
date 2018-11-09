@@ -4,7 +4,7 @@ import { of, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { ApiService } from 'app/services';
-import { AlertColor } from 'app/enums';
+import { AlertColor, KeyCode } from 'app/enums';
 import { AlertProps } from 'app/interfaces';
 import { fade } from 'app/animations';
 
@@ -44,5 +44,11 @@ export class PwLoginComponent implements OnDestroy {
     this.alert.msg = msg;
     this.alert.show = true;
     this.alert.color = color;
+  }
+  onKeypress (event: KeyboardEvent) {
+    event.stopPropagation();
+    if (event.key === KeyCode.ENTER) {
+      this.onSubmit();
+    }
   }
 }

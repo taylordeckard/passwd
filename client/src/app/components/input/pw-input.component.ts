@@ -23,9 +23,11 @@ export class PwInputComponent implements AfterViewInit, ControlValueAccessor, On
   @Input() autofocus: boolean;
   @Input() focus: boolean;
   @Output() focusChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() keypress: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
   @ViewChild('input') input: ElementRef;
   blurListener: () => void;
   focusListener: () => void;
+  keypressListener: () => void;
   isPassword: boolean;
   model: string;
   pwVisibilityIconSrc = '/assets/eye.svg';
@@ -35,6 +37,7 @@ export class PwInputComponent implements AfterViewInit, ControlValueAccessor, On
   ngOnDestroy () {
     this.blurListener();
     this.focusListener();
+    this.keypressListener();
   }
   ngOnInit () {
     if (this.type === InputType.PASSWORD) {
@@ -64,6 +67,11 @@ export class PwInputComponent implements AfterViewInit, ControlValueAccessor, On
     this.focusListener = this.renderer.listen(this.input.nativeElement, 'focus', () => {
       this.focusChange.emit(true);
     });
+    this.keypressListener = this.renderer.listen(
+      this.input.nativeElement,
+      'keypress',
+      this.onKeyPress.bind(this),
+    );
   }
   toggleType () {
     if (this.type === 'password') {
@@ -79,5 +87,8 @@ export class PwInputComponent implements AfterViewInit, ControlValueAccessor, On
   clearModel () {
     this.model = '';
     this.propagateChange(this.model);
+  }
+  onKeyPress (event: KeyboardEvent) {
+    this.keypress.emit(event);
   }
 }
