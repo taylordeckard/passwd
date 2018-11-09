@@ -7,6 +7,10 @@ const koaLogger = require('koa-bunyan')(logger);
 const {
 	login,
 	register,
+	reset: {
+		initReset,
+		applyReset,
+	},
 	user: {
 		createUser,
 		getUser,
@@ -25,6 +29,8 @@ app.keys = constants.appKeys;
 // route definitions
 router.post('/api/login', login)
 	.post('/api/register', register)
+	.put('/api/reset', applyReset)
+	.post('/api/reset', initReset)
 	.get('/api/user', setUser, getUser)
 	.post('/api/user', createUser)
 	.put('/api/user', setUser, updateUser);

@@ -8,9 +8,11 @@ module.exports = {
 	},
 	env: {
 		development: {
+			resetPasswordBaseUrl: 'http://localhost:4200/account/reset/',
 			verifyEmailBaseUrl: 'http://localhost:4200/account/verify/',
 		},
 		production: {
+			resetPasswordBaseUrl: 'https://www.taylordeckard.me/passwd/account/reset/',
 			verifyEmailBaseUrl: 'https://www.taylordeckard.me/passwd/account/verify/',
 		},
 	},
@@ -25,4 +27,9 @@ module.exports = {
 		cookie: 'cookie',
 		user: 'user',
 	},
+	resetPasswordSubject: 'Passwd - Reset your master password',
+	resetPasswordTokenExpiry: 600, // 10 minutes
+	tokenLength: 256,
+	verifyEmailSubject: 'Passwd - Verify your Email',
+	verifyEmailTokenExpiry: 172800, // 2 days
 };
