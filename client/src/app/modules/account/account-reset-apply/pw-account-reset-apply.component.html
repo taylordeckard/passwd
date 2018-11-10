@@ -1,0 +1,48 @@
+<div class="alert-container">
+  <pw-alert [(show)]="alert.show" [msg]="alert.msg" [color]="alert.color"></pw-alert>
+</div>
+<div class="text-center" *ngIf="!submitted">
+  <h2>Reset Password</h2>
+</div>
+<div class="form-container" *ngIf="!submitted">
+  <form [formGroup]="resetForm">
+    <pw-input label="Password" formControlName="password" type="password"
+    [(focus)]="passwordFocus"></pw-input>
+    <ng-container  *ngIf="password.invalid">
+      <ng-container *ngFor="let error of password.errors | keyvalue">
+        <div class="error-msg" *ngIf="error.key === 'required'
+          && password.touched">Password is required</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'passwordMismatch' && !passwordFocus">Passwords do not match</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'missingSpecialChar' 
+		  && password.touched">Password must include one special character</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'missingNumber' 
+		  && password.touched">Password must include one number</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'missingUppercase' 
+		  && password.touched">Password must include one uppercase letter</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'missingLowercase' 
+		  && password.touched">Password must include one lowercase letter</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'insufficientLength' 
+		  && password.touched">Password must be at least {{minNumChars}} characters</div>
+      </ng-container>
+    </ng-container>
+    <pw-input label="Repeat Password" formControlName="repeatPassword" type="password"
+      [(focus)]="passwordFocus"></pw-input>
+    <ng-container  *ngIf="repeatPassword.invalid">
+      <ng-container *ngFor="let error of repeatPassword.errors | keyvalue">
+        <div class="error-msg" *ngIf="error.key === 'required'
+          && repeatPassword.touched">Repeat Password is required</div>
+        <div class="error-msg"
+          *ngIf="error.key === 'passwordMismatch' && !passwordFocus">Passwords do not match</div>
+      </ng-container>
+    </ng-container>
+	<div class="text-center" *ngIf="resetForm.valid">
+		<pw-button (click)="onSubmit()">Submit</pw-button>
+	</div>
+  </form>
+</div>

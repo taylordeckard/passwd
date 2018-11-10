@@ -1,0 +1,23 @@
+@import '../../../../variables.scss';
+
+:host {
+  .alert-container {
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: $base-margin;
+  }
+  .form-container {
+    display: flex;
+    justify-content: center;
+    form {
+      max-width: 600px;
+	  @include responsive-width;
+    }
+  }
+  .error-msg {
+    margin-left: $base-margin;
+    margin-bottom: $base-margin;
+    color: $danger-color;
+    font-size: 12px;
+  }
+}

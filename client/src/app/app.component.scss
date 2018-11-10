@@ -1,19 +1,23 @@
 @import '../variables.scss';
 
 .header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	background: $primary-color;
-	height: 70px;
-	box-shadow: $base-box-shadow;
-	text-align: center;
-    z-index: 1;
-	img {
-		height: 60px;
-		margin-top: 6px;
-	}
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: $primary-color;
+  height: 70px;
+  box-shadow: $base-box-shadow;
+  text-align: center;
+  z-index: 1;
+  img {
+    height: 60px;
+    margin-top: 6px;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 .content {

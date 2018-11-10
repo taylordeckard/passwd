@@ -17,7 +17,7 @@ export class AccountVerifyComponent implements OnInit {
   alert: AlertProps = {
     show: false,
     color: AlertColor.DANGER,
-    msg: 'An error occurred. Please try again in a few minutes.',
+    msg: '',
   };
   constructor (
     private api: ApiService,
@@ -27,8 +27,13 @@ export class AccountVerifyComponent implements OnInit {
   ngOnInit () {
     const token = this.route.snapshot.params.token;
     this.api.createUser(token)
-      .pipe(catchError(() => {
+      .pipe(catchError(error => {
         this.alert.show = true;
+        if (error.status === 404) {
+          this.alert.msg = 'The provided verification token is no longer valid';
+        } else {
+          this.alert.msg = 'An error occurred. Please try again in a few minutes.';
+        }
         return of();
       }))
       .subscribe();

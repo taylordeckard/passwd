@@ -7,7 +7,7 @@ module.exports = {
 		const { token } = ctx.request.body;
 		const user = await redis.client.get(token);
 		if (!user) {
-			ctx.throw(400, 'invalid verification token');
+			ctx.throw(404, 'verification token not found');
 		}
 		await redis.client.set(utils.getRedisUserKey(user.email), {
 			username: user.email,

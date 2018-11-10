@@ -1,0 +1,25 @@
+<div class="alert-container">
+  <pw-alert [(show)]="alert.show" [msg]="alert.msg" [color]="alert.color"></pw-alert>
+</div>
+<div class="text-center" *ngIf="!submitted">
+  <h2>Password Reset</h2>
+</div>
+<div class="form-container" *ngIf="!submitted">
+  <form [formGroup]="emailForm">
+    <pw-input label="Email" autofocus="true" formControlName="email"></pw-input>
+    <ng-container  *ngIf="email.invalid && email.touched">
+      <ng-container *ngFor="let error of email.errors | keyvalue">
+        <div [ngSwitch]="error.key" class="error-msg">
+          <div *ngSwitchCase="'required'">Email is required</div>
+          <div *ngSwitchCase="'email'">Must be a valid email</div>
+        </div>
+      </ng-container>
+    </ng-container>
+	<div class="text-center" *ngIf="emailForm.valid">
+		<pw-button (click)="onSubmit()">Submit</pw-button>
+	</div>
+  </form>
+</div>
+<div *ngIf="submitted" class="absolute-center text-center">
+	<h1>Check your email for a link to reset your password</h1>
+</div>

@@ -18,6 +18,12 @@ export class ApiService {
         return response;
       }));
   }
+  public applyReset (body: { password: string, token: string }): Observable<any> {
+    return this.http.put(`${constants.backendBaseUrl}/reset`, body);
+  }
+  public initReset (body: { email: string }): Observable<any> {
+    return this.http.post(`${constants.backendBaseUrl}/reset`, body);
+  }
   public getUser(): Observable<any> {
     return this.http.get(`${constants.backendBaseUrl}/user`);
   }

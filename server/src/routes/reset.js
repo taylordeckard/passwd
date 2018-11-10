@@ -11,9 +11,13 @@ const utils = require('../utils');
 module.exports = {
 	async applyReset (ctx) {
 		const { token, password } = ctx.request.body;
-		const { email } = await redis.client.get(token);
+		const tokenRecord = await redis.client.get(token);
+		if (!tokenRecord) {
+			ctx.throw(404, 'reset token not found');
+		}
+		const { email } = tokenRecord;
 		const user = await redis.client.get(utils.getRedisUserKey(email));
-		user.password = password;
+		user.password = utils.encrypt(password);
 
 		await redis.client.set(utils.getRedisUserKey(email), user);
 		redis.client.del(token);
@@ -25,7 +29,7 @@ module.exports = {
 		const user = await redis.client.get(utils.getRedisUserKey(email));
 
 		if (!user) {
-			ctx.throw(400, 'No user with provided email');
+			ctx.throw(404, 'No user with provided email');
 		}
 
 		const token = crypto.randomBytes(constants.tokenLength).toString('hex');
