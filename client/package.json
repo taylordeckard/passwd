@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --base-href /passwd --deploy-url /passwd && rm -fr ../server/src/public/* && mv dist/passwd/* ../server/src/public",
+    "build": "ng build --prod --base-href /passwd --deploy-url /passwd/ && rm -fr ../server/src/public/* && mv dist/passwd/* ../server/src/public",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
