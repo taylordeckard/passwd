@@ -1,5 +1,7 @@
+import { environment } from '../../environments/environment';
+
 export const constants = {
-  backendBaseUrl: '/api',
+  backendBaseUrl: `${environment.baseHref}/api`,
   defaultPasswordLength: 12,
   encryptionKeyProperty: 'passwd::encryption-key',
   encryptionStrategy: 'aes-256-cbc',
