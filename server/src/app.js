@@ -18,12 +18,13 @@ const {
 	},
 } = require('./routes');
 const constants = require('./constants');
-const { setUser } = require('./middleware');
+const { serveIndexOn404, setUser } = require('./middleware');
 
 const app = new Koa();
 
 app.use(koaBody);
 app.use(koaLogger);
+app.use(serveIndexOn404);
 app.keys = constants.appKeys;
 
 // route definitions

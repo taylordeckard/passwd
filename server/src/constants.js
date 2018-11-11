@@ -16,6 +16,7 @@ module.exports = {
 			verifyEmailBaseUrl: 'https://www.taylordeckard.me/passwd/account/verify/',
 		},
 	},
+	indexPath: 'public/index.html',
 	mailerCfg: {
 		auth: {
 			pass: '<<MAILER_TEMP_PASS>>',
