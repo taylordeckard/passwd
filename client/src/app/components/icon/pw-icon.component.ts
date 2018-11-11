@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { environment } from '../../../environments/environment';
 
 import { IconService } from 'app/services';
 
@@ -29,7 +30,7 @@ export class PwIconComponent implements OnChanges, OnInit {
   }
 
   loadSrc () {
-    this.iconService.load(this.src)
+    this.iconService.load(`${environment.baseHref}${this.src}`)
       .subscribe((svg: string) => {
         this.svg = this.sanitizer.bypassSecurityTrustHtml(svg);
       });
