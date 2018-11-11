@@ -25,7 +25,7 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('passwd/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     ApiService,
