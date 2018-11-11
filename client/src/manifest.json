@@ -4,8 +4,8 @@
   "theme_color": "#ced7db",
   "background_color": "#e1e2e1",
   "display": "standalone",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/passwd/",
+  "start_url": "/passwd/index.html",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
