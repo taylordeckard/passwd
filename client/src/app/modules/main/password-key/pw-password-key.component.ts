@@ -25,7 +25,7 @@ export class PwPasswordKeyComponent implements OnDestroy, OnInit {
     private api: ApiService,
     private crypto: CryptoService,
     private fb: FormBuilder,
-    private state: AppStateService,
+    public state: AppStateService,
   ) {}
   ngOnDestroy () {
     if (this.encryptedPasswordsSub) {
