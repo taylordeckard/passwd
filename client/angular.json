@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "passwd": {
-      "root": "pw",
+      "root": "./",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "pw",
