@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputType } from 'app/enums';
+import { UtilsService } from 'app/services';
 
 @Component({
   selector: 'pw-input',
@@ -33,7 +34,10 @@ export class PwInputComponent implements AfterViewInit, ControlValueAccessor, On
   pwVisibilityIconSrc = '/assets/eye.svg';
   pwCloseIconSrc = '/assets/close.svg';
   pwVisibilityIconTitle = 'Show Password';
-  constructor (private renderer: Renderer2) {}
+  constructor (
+    private renderer: Renderer2,
+    private utils: UtilsService,
+  ) {}
   ngOnDestroy () {
     this.blurListener();
     this.focusListener();
@@ -58,7 +62,7 @@ export class PwInputComponent implements AfterViewInit, ControlValueAccessor, On
 
   ngAfterViewInit () {
     if (this.autofocus) {
-      this.input.nativeElement.focus();
+      this.utils.focusInput(this.input);
     }
     this.blurListener = this.renderer.listen(this.input.nativeElement, 'blur', () => {
       this.propagateTouch();
