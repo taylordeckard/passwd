@@ -24,4 +24,7 @@ export class UtilsService {
       input.nativeElement.focus();
     }
   }
+  scrollToTop () {
+    window.scrollTo(0, 0);
+  }
 }

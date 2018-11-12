@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { PwListView } from 'app/enums';
 import { Credentials, User } from 'app/interfaces';
 import { ApiService } from './api.service';
+import { UtilsService } from './utils.service';
 import { CryptoService } from './crypto.service';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -21,6 +22,7 @@ export class AppStateService {
   constructor (
     private api: ApiService,
     private crypto: CryptoService,
+    private utils: UtilsService,
   ) {}
   get editTarget (): Credentials {
     return this._editTarget;
@@ -86,6 +88,7 @@ export class AppStateService {
   set view (v: PwListView)  {
     this._view = v;
     this.viewSubject.next(this._view);
+    this.utils.scrollToTop();
   }
   deleteCredential (credentials: Credentials) {
     const index = this._passwords.indexOf(credentials);
