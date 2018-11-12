@@ -7,6 +7,14 @@ const routes: Routes = [
     loadChildren: './modules/account/account.module#AccountModule',
   },
   {
+    path: 'login',
+    loadChildren: './modules/login/login.module#LoginModule',
+  },
+  {
+    path: '',
+    loadChildren: './modules/main/main.module#MainModule',
+  },
+  {
     path: '**',
     loadChildren: './modules/main/main.module#MainModule',
   },

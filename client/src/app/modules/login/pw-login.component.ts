@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { of, Subscription } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, flatMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
-import { ApiService } from 'app/services';
-import { AlertColor, KeyCode } from 'app/enums';
+import { ApiService, AppStateService } from 'app/services';
+import { AlertColor, KeyCode, PwListView, } from 'app/enums';
 import { AlertProps } from 'app/interfaces';
 import { fade } from 'app/animations';
 
@@ -20,6 +21,8 @@ export class PwLoginComponent implements OnDestroy {
   constructor (
     private api: ApiService,
     private fb: FormBuilder,
+    private router: Router,
+    private state: AppStateService,
   ) {}
   loginForm: FormGroup = this.fb.group({
     username: ['', Validators.required],
@@ -31,8 +34,14 @@ export class PwLoginComponent implements OnDestroy {
         this.showAlert('That didn\'t work.', AlertColor.DANGER);
         return of();
       }))
-      .subscribe(response => {
-        this.showAlert('Logged In!', AlertColor.SUCCESS);
+      // login then get user
+      .pipe(flatMap(() => this.api.getUser()))
+      .subscribe(user => {
+        this.state.user = user;
+        if (this.state.passwords.length === 0) {
+          this.state.view = PwListView.KEY;
+        }
+        this.router.navigate(['']);
       });
   }
   ngOnDestroy () {
