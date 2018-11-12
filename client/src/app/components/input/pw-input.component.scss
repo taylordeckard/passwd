@@ -11,7 +11,7 @@
     padding: 12px;
     label {
       position: absolute;
-      top: 19px;
+      top: 21px;
       left: 18px;
       transition: transform .2s, color .2s;
       pointer-events: none;
@@ -22,12 +22,13 @@
       border-radius: 3px;
       border: 1px solid gray;
       box-shadow: 1px 1px 2px rgba(0,0,0,.25) inset;
+      font-size: 16px;
       &:focus {
         outline: 1px solid $link-color;
       }
       &:focus ~ label, &.has-input ~ label {
         color: $link-color;
-        transform: translate(-16px, -25px) scale(.75);
+        transform: translate(-16px, -30px) scale(.75);
       }
     }
     .pw-visibility-toggle {
