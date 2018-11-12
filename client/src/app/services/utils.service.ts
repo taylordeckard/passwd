@@ -2,14 +2,71 @@ import { ElementRef, Injectable } from '@angular/core';
 
 @Injectable()
 export class UtilsService {
+  /**
+   * Method based on https://www.npmjs.com/package/clipboard
+   */
   copyToClipboard (text: string) {
-    const copyElem: any = document.createElement('textarea');
-    copyElem.style.opacity = '0';
-    copyElem.value = text;
-    document.body.appendChild(copyElem);
-    copyElem.select();
+    const fakeElem = document.createElement('textarea');
+    // Prevent zooming on iOS
+    fakeElem.style.fontSize = '12pt';
+    // Reset box model
+    fakeElem.style.border = '0';
+    fakeElem.style.padding = '0';
+    fakeElem.style.margin = '0';
+    // Move element out of screen horizontally
+    fakeElem.style.position = 'absolute';
+    fakeElem.style.left = '-9999px';
+    fakeElem.setAttribute('readonly', '');
+    fakeElem.value = text;
+    document.body.appendChild(fakeElem);
+    this.select(fakeElem);
     document.execCommand('copy');
-    document.body.removeChild(copyElem);
+    document.body.removeChild(fakeElem);
+  }
+  /**
+   * Method based on https://www.npmjs.com/package/select
+   */
+  select (element: HTMLInputElement | HTMLTextAreaElement) {
+    let selectedText;
+
+    if (element.nodeName === 'SELECT') {
+      element.focus();
+
+      selectedText = element.value;
+    } else if (
+      element.nodeName === 'INPUT'
+        || element.nodeName === 'TEXTAREA'
+    ) {
+      const isReadOnly = element.hasAttribute('readonly');
+
+      if (!isReadOnly) {
+        element.setAttribute('readonly', '');
+      }
+
+      element.select();
+      element.setSelectionRange(0, element.value.length);
+
+      if (!isReadOnly) {
+        element.removeAttribute('readonly');
+      }
+
+      selectedText = element.value;
+    } else {
+      if (element.hasAttribute('contenteditable')) {
+        element.focus();
+      }
+
+      const selection = window.getSelection();
+      const range = document.createRange();
+
+      range.selectNodeContents(element);
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      selectedText = selection.toString();
+    }
+
+    return selectedText;
   }
   get isMobile (): boolean {
     const a = navigator.userAgent || navigator.vendor || (<any>window).opera;
