@@ -81,4 +81,17 @@ export class PwPasswordKeyComponent implements OnDestroy, OnInit {
       this.successfulDecryption = false;
     }
   }
+  get allowSave () {
+    // form must be valid
+    return this.keyForm.valid
+      && (
+        // and if encrypted passwords, must be successfully decrypted
+        (
+          this.encryptedPasswords
+          && this.successfulDecryption
+        )
+        // or no encrypted passwords
+        || !this.encryptedPasswords
+      );
+  }
 }
