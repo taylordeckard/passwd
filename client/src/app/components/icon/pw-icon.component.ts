@@ -12,7 +12,7 @@ import { IconService } from 'app/services';
 export class PwIconComponent implements OnChanges, OnInit {
   @Input() src: string;
   @Input() color: 'white' | 'dark' = 'white';
-  @Input() size: 'sm' | 'lg' = 'sm';
+  @Input() size: 'sm' | 'md' | 'lg' = 'sm';
   svg: SafeHtml;
   constructor (
     private iconService: IconService,

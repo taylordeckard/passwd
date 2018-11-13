@@ -28,4 +28,10 @@
       width: 75px;
     }
   }
+  .md {
+    ::ng-deep svg {
+      height: 40px;
+      width: 40px;
+    }
+  }
 }
