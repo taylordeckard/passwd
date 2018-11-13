@@ -4,7 +4,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { fade } from 'app/animations';
 import { Credentials } from 'app/interfaces';
-import { PwListView } from 'app/enums';
+import { InputType, PwListView } from 'app/enums';
 import { constants } from 'app/shared';
 import { AppStateService, CryptoService, UtilsService } from 'app/services';
 import { Subscription } from 'rxjs';
@@ -20,6 +20,7 @@ export class PwPasswordFormComponent implements OnDestroy, OnInit {
   editTargetSub: Subscription;
   passwords: Credentials[];
   passwordsSub: Subscription;
+  passwordType: InputType = InputType.PASSWORD;
   pwForm: FormGroup;
   showModal = false;
   constructor (
@@ -95,5 +96,6 @@ export class PwPasswordFormComponent implements OnDestroy, OnInit {
       this.crypto.generatePassword(constants.defaultPasswordLength),
     );
     this.utils.copyToClipboard(this.pwForm.value.password);
+    this.passwordType = InputType.TEXT;
   }
 }

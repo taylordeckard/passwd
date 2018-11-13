@@ -15,7 +15,7 @@
     <pw-icon *ngIf="isPassword"
       class="pw-visibility-toggle"
       [src]="pwVisibilityIconSrc"
-      (click)="toggleType()"
+      (click)="toggleType(type === 'password' ? 'text' : 'password')"
       color="dark"
       [title]="pwVisibilityIconTitle">
     </pw-icon>

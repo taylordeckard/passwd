@@ -1,6 +1,6 @@
 import {
-  AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output,
-  Renderer2, ViewChild,
+  AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input, OnChanges, OnDestroy,
+  OnInit, Output, Renderer2, SimpleChanges, ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputType } from 'app/enums';
@@ -18,12 +18,14 @@ import { UtilsService } from 'app/services';
     },
   ],
 })
-export class PwInputComponent implements AfterViewInit, ControlValueAccessor, OnDestroy, OnInit {
+export class PwInputComponent implements AfterViewInit, ControlValueAccessor, OnChanges,
+OnDestroy, OnInit {
   @Input() label: string;
   @Input() type: InputType = InputType.TEXT;
   @Input() autofocus: boolean;
   @Input() focus: boolean;
   @Output() focusChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() typeChange: EventEmitter<InputType> = new EventEmitter<InputType>();
   @Output() keypress: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
   @ViewChild('input') input: ElementRef;
   blurListener: () => void;
@@ -77,13 +79,20 @@ export class PwInputComponent implements AfterViewInit, ControlValueAccessor, On
       this.onKeyPress.bind(this),
     );
   }
-  toggleType () {
-    if (this.type === 'password') {
-      this.type = InputType.TEXT;
+
+  ngOnChanges (changes: SimpleChanges) {
+    if (changes.type && this.isPassword) {
+      this.toggleType(changes.type.currentValue);
+    }
+  }
+
+  toggleType (newType: InputType) {
+    this.type = newType;
+    this.typeChange.emit(this.type);
+    if (newType === InputType.TEXT) {
       this.pwVisibilityIconSrc = '/assets/hide.svg';
       this.pwVisibilityIconTitle = 'Hide Password';
     } else {
-      this.type = InputType.PASSWORD;
       this.pwVisibilityIconSrc = '/assets/eye.svg';
       this.pwVisibilityIconTitle = 'Show Password';
     }
