@@ -78,6 +78,7 @@ export class PwPasswordFormComponent implements OnDestroy, OnInit {
       }
     }
     this.editTarget = null;
+    this.state.editTarget = null;
     this.state.view = PwListView.LIST;
   }
 
